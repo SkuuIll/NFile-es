@@ -329,38 +329,23 @@ class NFileDrawer extends StatelessWidget {
 
   Widget _buildDrawerHeader(BuildContext context, ThemeData theme, bool isDark) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isDark
-              ? [
-                  Color.alphaBlend(theme.colorScheme.primary.withOpacity(0.15), const Color(0xFF0F172A)),
-                  Color.alphaBlend(theme.colorScheme.primary.withOpacity(0.05), const Color(0xFF1E293B)),
-                ]
-              : [theme.colorScheme.primary.withOpacity(0.85), theme.colorScheme.primary],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary.withOpacity(0.25),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        color: isDark ? const Color(0xFF141414) : Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: isDark ? const Color(0xFF2A2A2A) : const Color(0xFFE5E5E5)),
       ),
       child: Row(
         children: [
           Container(
-            width: 52,
-            height: 52,
+            width: 44,
+            height: 44,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              shape: BoxShape.circle,
+              color: (isDark ? Colors.white : Colors.black).withOpacity(0.06),
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: const NfileIcon(Broken.folder, color: Colors.white, size: 28),
+            child: NfileIcon(Broken.folder, color: theme.colorScheme.primary, size: 22),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -369,12 +354,12 @@ class NFileDrawer extends StatelessWidget {
               children: [
                 Text(
                   AppStrings.current.appTitle,
-                  style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold, letterSpacing: 0.5),
+                  style: TextStyle(color: theme.colorScheme.onSurface, fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.3),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   AppStrings.current.appSubtitle,
-                  style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 12.5, fontWeight: FontWeight.w500),
+                  style: TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.5), fontSize: 12, fontWeight: FontWeight.w400),
                 ),
               ],
             ),

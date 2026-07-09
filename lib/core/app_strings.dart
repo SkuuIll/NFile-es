@@ -638,6 +638,10 @@ class AppStrings {
   String runningAt(String url) => _locale == 'es' ? 'Ejecutándose en $url' : 'Running at $url';
 
   String get nfileVersion => 'NFile v1.0.43';
+
+  String get storageAnalyzer => _locale == 'es' ? 'Analizador de Almacenamiento' : 'Storage Analyzer';
+  String freeSpace(String size) => _locale == 'es' ? 'Libre: $size' : 'Free: $size';
+  String totalSpace(String size) => _locale == 'es' ? 'Total: $size' : 'Total: $size';
 }
 
 class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {
