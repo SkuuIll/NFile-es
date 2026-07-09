@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/icon_fonts/broken_icons.dart';
 import '../../core/app_strings.dart';
@@ -353,7 +353,7 @@ class _CustomizeCategoriesSheet extends StatelessWidget {
                 Expanded(
                   child: ReorderableListView.builder(
                     scrollController: scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     onReorder: (oldIndex, newIndex) => provider.reorderCategory(oldIndex, newIndex),
                     itemCount: order.length,
                     itemBuilder: (context, index) {

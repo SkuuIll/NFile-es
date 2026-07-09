@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/file_filter_type.dart';
 import '../../providers/file_manager_provider.dart';
@@ -111,7 +111,7 @@ class FileFilterBottomSheet extends StatelessWidget {
             Flexible(
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   final item = items[index];

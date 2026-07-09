@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:path/path.dart' as p;
@@ -77,7 +77,7 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
-              physics: const BouncingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               child: HtmlWidget(
                 _htmlContent,
                 textStyle: theme.textTheme.bodyMedium,

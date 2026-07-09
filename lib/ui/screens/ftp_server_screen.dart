@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../core/app_strings.dart';
 import '../../core/icon_fonts/broken_icons.dart';
@@ -333,7 +333,7 @@ class _FtpServerScreenState extends State<FtpServerScreen> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   child: Column(
                     children: [
                       // Active/Inactive Card

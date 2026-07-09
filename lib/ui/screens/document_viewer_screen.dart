@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:docx_to_text/docx_to_text.dart';
@@ -244,7 +244,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
               ),
               child: SafeArea(
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -703,7 +703,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
     return Container(
       color: isDark ? const Color(0xFF0D0D1A) : const Color(0xFFF9F9FF),
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Container(
           width: double.infinity,
@@ -779,9 +779,9 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
               ? Center(child: Text(AppStrings.current.emptySheet))
               : SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Table(
@@ -829,7 +829,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
     return Container(
       color: isDark ? const Color(0xFF0D0D1A) : const Color(0xFFF9F9FF),
       child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.all(24),
         itemCount: _pptSlides.length,
         itemBuilder: (context, index) {
@@ -912,7 +912,7 @@ class _DocumentViewerScreenState extends State<DocumentViewerScreen> {
     return Container(
       color: isDark ? const Color(0xFF0D0D1A) : const Color(0xFFF9F9FF),
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.all(16),
         child: SelectableText(
           _textController.text.isEmpty ? '(Empty file)' : _textController.text,

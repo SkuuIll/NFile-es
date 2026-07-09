@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -404,7 +404,7 @@ class _WebSharingScreenState extends State<WebSharingScreen> with SingleTickerPr
   // --- TAB 1: Local HTTP Server Streaming ---
   Widget _buildLocalShareView(ThemeData theme, bool isDark, String shareDir) {
     return ListView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.all(20.0),
       children: [
         const Text(
@@ -574,7 +574,7 @@ class _WebSharingScreenState extends State<WebSharingScreen> with SingleTickerPr
   Widget _buildInternetShareView(ThemeData theme, bool isDark) {
     final shareDir = context.read<FileManagerProvider>().rootPath;
     return ListView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.all(20.0),
       children: [
         const Text(

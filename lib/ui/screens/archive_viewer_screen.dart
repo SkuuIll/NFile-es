@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
@@ -249,7 +249,7 @@ class _ArchiveViewerScreenState extends State<ArchiveViewerScreen> {
       });
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${physicalPaths.length} item(s) copied to clipboard ✓')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${physicalPaths.length} item(s) copied to clipboard âœ“')));
       }
     } catch (e) {
       debugPrint('Error copying to clipboard: $e');
@@ -467,7 +467,7 @@ class _ArchiveViewerScreenState extends State<ArchiveViewerScreen> {
                 : items.isEmpty
                     ? Center(child: Text(AppStrings.current.folderIsEmpty))
                     : ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: const ClampingScrollPhysics(),
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         itemCount: items.length,
                         itemBuilder: (context, index) {

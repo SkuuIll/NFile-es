@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart' as p;
@@ -443,7 +443,7 @@ class _DirectoryScreenState extends State<DirectoryScreen> {
           builder: (context, setStateModal) {
             return SafeArea(
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
@@ -1258,7 +1258,7 @@ class _DirectoryScreenState extends State<DirectoryScreen> {
                           ),
                         ),
                         subtitle: Text(
-                          '${conn.type} • ${conn.host}',
+                          '${conn.type} â€¢ ${conn.host}',
                           style: TextStyle(
                             fontSize: 12,
                             color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -1878,7 +1878,7 @@ class _DirectoryScreenState extends State<DirectoryScreen> {
                               )
                             : CustomScrollView(
                                 controller: _scrollController,
-                                physics: const BouncingScrollPhysics(
+                                physics: const ClampingScrollPhysics(
                                   parent: AlwaysScrollableScrollPhysics(),
                                 ),
                                 slivers: [

@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -285,7 +285,7 @@ class _PaneBrowserState extends State<PaneBrowser> {
                     color: theme.colorScheme.surfaceVariant.withOpacity(0.15),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       child: Row(
                         children: [
                           Icon(Broken.folder, size: 14, color: theme.colorScheme.primary.withOpacity(0.7)),
@@ -459,7 +459,7 @@ class _PaneBrowserState extends State<PaneBrowser> {
                                   )
                                 : CustomScrollView(
                                       controller: _scrollController,
-                                      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                                      physics: const ClampingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                                       slivers: [
                                       CupertinoSliverRefreshControl(
                                         onRefresh: () => provider.loadDirectoryForTab(widget.tabIndex, tab.currentPath, showLoading: false, clearCache: true),
@@ -809,7 +809,7 @@ class _PaneBrowserState extends State<PaneBrowser> {
                                   );
                                 } else {
                                   return Text(
-                                    '$countStr • ${FileUtils.formatDate(folder.modified, use24Hour: provider.use24HourFormat)}',
+                                    '$countStr â€¢ ${FileUtils.formatDate(folder.modified, use24Hour: provider.use24HourFormat)}',
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: theme.textTheme.bodySmall?.color?.withOpacity(0.55),
                                       fontSize: 10.5,

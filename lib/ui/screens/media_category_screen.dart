@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:path/path.dart' as path_helper;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -487,7 +487,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
                 mimeType = match.mimeType ?? 'image/${f.path.split('.').last}';
               } else if (match.type == AssetType.video) {
                 final d = Duration(seconds: match.duration);
-                dimensionsOrDuration = '${match.width} x ${match.height} • ${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, "0")}';
+                dimensionsOrDuration = '${match.width} x ${match.height} â€¢ ${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, "0")}';
                 mimeType = match.mimeType ?? 'video/${f.path.split('.').last}';
               }
             }
@@ -915,7 +915,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
                   }
                   return GridView.builder(
                     padding: const EdgeInsets.all(12),
-                    physics: const BouncingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: (MediaQuery.of(context).size.width / 180).floor().clamp(2, 6),
                       crossAxisSpacing: 12,
@@ -1021,7 +1021,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       child: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -1133,7 +1133,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
     final entries = grouped.entries.toList();
 
     return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       slivers: [
         for (final entry in entries) ...[
           // Month Header
@@ -1362,7 +1362,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
     }
     return GridView.builder(
       padding: const EdgeInsets.all(6),
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: (MediaQuery.of(context).size.width / 120).floor().clamp(3, 10),
         crossAxisSpacing: 6,
@@ -1546,7 +1546,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
     }
     return GridView.builder(
       padding: const EdgeInsets.all(6),
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: (MediaQuery.of(context).size.width / 120).floor().clamp(3, 10),
         crossAxisSpacing: 6,
@@ -1638,7 +1638,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       title: Text(audio.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
       subtitle: Text(
         showDate
-            ? '${audio.artist ?? "Unknown Artist"} • $dateStr'
+            ? '${audio.artist ?? "Unknown Artist"} â€¢ $dateStr'
             : audio.artist ?? "Unknown Artist",
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
@@ -1675,7 +1675,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       );
     }
     return ListView.builder(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       itemCount: audios.length,
       itemBuilder: (context, index) {
         final audio = audios[index];
@@ -1737,7 +1737,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.w500)),
       subtitle: Text(
         showDate
-            ? '${FileUtils.formatBytes(size, 1)} • ${FileUtils.formatDate(modified)}'
+            ? '${FileUtils.formatBytes(size, 1)} â€¢ ${FileUtils.formatDate(modified)}'
             : FileUtils.formatBytes(size, 1),
         style: TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.6), fontSize: 11),
       ),
@@ -1772,7 +1772,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       );
     }
     return ListView.builder(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: documents.length,
       itemBuilder: (context, index) {
@@ -1837,7 +1837,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.w500)),
       subtitle: Text(
         showDate
-            ? '${FileUtils.formatBytes(size, 1)} • ${FileUtils.formatDate(modified)}'
+            ? '${FileUtils.formatBytes(size, 1)} â€¢ ${FileUtils.formatDate(modified)}'
             : FileUtils.formatBytes(size, 1),
         style: TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.6), fontSize: 11),
       ),
@@ -1872,7 +1872,7 @@ class _MediaCategoryScreenState extends State<MediaCategoryScreen>
       );
     }
     return ListView.builder(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: files.length,
       itemBuilder: (context, index) {

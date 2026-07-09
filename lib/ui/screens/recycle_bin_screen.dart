@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../models/file_item_model.dart';
 import '../../services/recycle_bin_service.dart';
 import '../../core/utils.dart';
@@ -295,7 +295,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
                 children: [
                   Expanded(
                     child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       itemCount: _filteredItems.length,
                       itemBuilder: (context, index) {
@@ -380,7 +380,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
                                         ),
                                         const SizedBox(height: 2),
                                         Text(
-                                          'Deleted: ${FileUtils.formatDate(item.deletedAt)} • ${FileUtils.formatBytes(item.size, 1)}',
+                                          'Deleted: ${FileUtils.formatDate(item.deletedAt)} â€¢ ${FileUtils.formatBytes(item.size, 1)}',
                                           style: theme.textTheme.bodySmall?.copyWith(
                                             color: theme.colorScheme.onSurface.withOpacity(0.6),
                                             fontSize: 11,

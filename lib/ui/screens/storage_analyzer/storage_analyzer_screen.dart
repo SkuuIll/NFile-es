@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -267,7 +267,7 @@ class _StorageAnalyzerScreenState extends State<StorageAnalyzerScreen> with Sing
     final int freeSize = max(0, _totalStorageSize - _totalUsedSize);
 
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Column(
         children: [
           // Circular progress card

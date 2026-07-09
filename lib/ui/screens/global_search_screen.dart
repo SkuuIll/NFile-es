@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -676,7 +676,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
                         'We could not find anything matching "$_query" under $_selectedFilter',
                       )
                     : ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+                        physics: const ClampingScrollPhysics(),
                         itemCount: _results.length,
                         itemBuilder: (context, index) {
                           final item = _results[index];

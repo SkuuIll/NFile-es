@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
@@ -536,7 +536,7 @@ class _TextEditorScreenState extends State<TextEditorScreen> {
               style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
-              '$_selectedLanguage • $lineCount lines${_isModified ? ' (Modified)' : ''}',
+              '$_selectedLanguage â€¢ $lineCount lines${_isModified ? ' (Modified)' : ''}',
               style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
             ),
           ],
@@ -760,7 +760,7 @@ class _TextEditorScreenState extends State<TextEditorScreen> {
                               ? _buildTextField(theme)
                               : SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
-                                  physics: const BouncingScrollPhysics(),
+                                  physics: const ClampingScrollPhysics(),
                                   child: SizedBox(
                                     width: MediaQuery.of(context).size.width * 2.5,
                                     child: _buildTextField(theme),
@@ -829,7 +829,7 @@ class _TextEditorScreenState extends State<TextEditorScreen> {
       child: TextField(
         controller: _controller,
         scrollController: _textScrollController,
-        scrollPhysics: const BouncingScrollPhysics(),
+        scrollPhysics: const ClampingScrollPhysics(),
         maxLines: null,
         expands: true,
         readOnly: _readOnly,

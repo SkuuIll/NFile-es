@@ -99,6 +99,7 @@ class AppTheme {
       fontFamilyFallback: const ['sans-serif', 'Roboto'],
       scaffoldBackgroundColor: scaffoldBg,
       splashColor: Colors.transparent,
+      splashFactory: NoSplash.splashFactory,
       highlightColor: Colors.transparent,
       applyElevationOverlayColor: false,
       dividerColor: borderColor,

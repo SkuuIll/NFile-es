@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+﻿import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../../core/icon_fonts/broken_icons.dart';
 import '../../../../models/app_info_model.dart';
@@ -130,7 +130,7 @@ class _BackupListTabState extends State<BackupListTab> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            '${isApks ? "Split Bundle" : "Single APK"} • v${item['version']}',
+                            '${isApks ? "Split Bundle" : "Single APK"} â€¢ v${item['version']}',
                             style: TextStyle(
                               color: theme.textTheme.bodySmall?.color?.withOpacity(0.5),
                               fontSize: 12,
@@ -140,7 +140,7 @@ class _BackupListTabState extends State<BackupListTab> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Size: ${FileUtils.formatBytes(item['apkSize'] as int, 2)} • Backup Date: ${FileUtils.formatDate(item['installTime'] as DateTime, use24Hour: true).split('  ').first}',
+                            'Size: ${FileUtils.formatBytes(item['apkSize'] as int, 2)} â€¢ Backup Date: ${FileUtils.formatDate(item['installTime'] as DateTime, use24Hour: true).split('  ').first}',
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.w600,
@@ -285,7 +285,7 @@ class _BackupListTabState extends State<BackupListTab> {
     }
 
     return ListView.builder(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: _backups.length,
       itemBuilder: (context, index) {
@@ -343,7 +343,7 @@ class _BackupListTabState extends State<BackupListTab> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${isApks ? "Split Bundle (APKS)" : "Single APK"} • v${item['version']}',
+                          '${isApks ? "Split Bundle (APKS)" : "Single APK"} â€¢ v${item['version']}',
                           style: TextStyle(
                             color: theme.textTheme.bodySmall?.color?.withOpacity(0.55),
                             fontSize: 11,

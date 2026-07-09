@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart' as p;
@@ -398,7 +398,7 @@ class _AllRecentFilesScreenState extends State<AllRecentFilesScreen> {
                   ),
                 )
               : ListView.builder(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   padding: const EdgeInsets.only(top: 8, bottom: 24),
                   itemCount: _recentFiles.length,
                   itemBuilder: (context, index) {

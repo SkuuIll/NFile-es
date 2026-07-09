@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/file_manager_provider.dart';
@@ -285,7 +285,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
         ),
         body: SafeArea(
           child: ListView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             children: [
               if (_searchQuery.isEmpty) ...[
@@ -1106,7 +1106,7 @@ class GeneralSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1274,7 +1274,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1360,7 +1360,7 @@ class ExplorerSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1504,7 +1504,7 @@ class LayoutSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1650,7 +1650,7 @@ class _MediaSettingsScreenState extends State<MediaSettingsScreen> {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1717,7 +1717,7 @@ class ActionsSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1779,7 +1779,7 @@ class _TrashSettingsScreenState extends State<TrashSettingsScreen> {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
@@ -1926,7 +1926,7 @@ void _showTrailingInfoTypePickerDialog(BuildContext context, FileManagerProvider
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(
@@ -2022,7 +2022,7 @@ void _showExitOptionPickerDialog(BuildContext context, FileManagerProvider fileM
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(
@@ -2100,7 +2100,7 @@ void _showThemePickerDialog(BuildContext context, FileManagerProvider fileManage
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(
@@ -2181,7 +2181,7 @@ void _showFolderIconPickerDialog(BuildContext context, FileManagerProvider fileM
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(
@@ -2256,7 +2256,7 @@ void _showMenuIconStylePickerDialog(BuildContext context, FileManagerProvider fi
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(
@@ -2509,7 +2509,7 @@ void _showFontFamilyPickerDialog(BuildContext context, FileManagerProvider fileM
             bottom: MediaQuery.of(ctx).viewInsets.bottom,
           ),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Column(

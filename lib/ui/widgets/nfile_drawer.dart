@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/app_strings.dart';
 import '../../core/icon_fonts/broken_icons.dart';
@@ -52,7 +52,7 @@ class NFileDrawer extends StatelessWidget {
             // Scrollable Menu Items
             Expanded(
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

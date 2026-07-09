@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
@@ -389,7 +389,7 @@ class _LyricsDialogState extends State<LyricsDialog> {
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 padding: EdgeInsets.symmetric(vertical: _viewportHeight / 2 - 30.0),
                 itemCount: _lyrics!.length,
                 itemBuilder: (context, idx) {
@@ -407,7 +407,7 @@ class _LyricsDialogState extends State<LyricsDialog> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                       child: Text(
-                        line.text.isEmpty ? "♪" : line.text,
+                        line.text.isEmpty ? "â™ª" : line.text,
                         style: TextStyle(
                           color: isSelected ? theme.colorScheme.primary : Colors.white.withOpacity(0.4),
                           fontSize: isSelected ? 18 : 15,

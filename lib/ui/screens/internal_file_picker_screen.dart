@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
@@ -436,7 +436,7 @@ class _InternalFilePickerScreenState extends State<InternalFilePickerScreen> {
                 ? Center(child: Text(AppStrings.current.folderIsEmpty))
                 : ListView.builder(
                     controller: _scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     itemCount: _items.length,
                     itemBuilder: (context, index) {

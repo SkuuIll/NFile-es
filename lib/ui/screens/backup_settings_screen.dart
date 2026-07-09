@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../core/icon_fonts/broken_icons.dart';
 import '../../core/app_strings.dart';
@@ -22,7 +22,7 @@ class BackupSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             _BackupSettingsTile(

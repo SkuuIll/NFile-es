@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import '../../providers/file_manager_provider.dart';
 import '../../core/icon_fonts/broken_icons.dart';
@@ -34,7 +34,7 @@ class DirectoryTabBar extends StatelessWidget implements PreferredSizeWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               itemCount: tabs.length,
               itemBuilder: (context, index) {

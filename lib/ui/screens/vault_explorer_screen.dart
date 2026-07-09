@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -454,7 +454,7 @@ class _VaultExplorerScreenState extends State<VaultExplorerScreen> {
                 _buildInfoTile('Locked At', record.lockedAt, theme),
                 _buildInfoTile(
                   'Protection Mode',
-                  record.isInPlace ? '⚡ In-Place Scrambling' : '🔒 Isolated Move (Sandbox)',
+                  record.isInPlace ? 'âš¡ In-Place Scrambling' : 'ðŸ”’ Isolated Move (Sandbox)',
                   theme,
                   valueColor: record.isInPlace ? Colors.orangeAccent : Colors.greenAccent,
                 ),
@@ -732,7 +732,7 @@ class _VaultExplorerScreenState extends State<VaultExplorerScreen> {
 
   Widget _buildPlaceholder(ThemeData theme, bool isDark) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 48.0),
         child: Column(
@@ -775,7 +775,7 @@ class _VaultExplorerScreenState extends State<VaultExplorerScreen> {
 
   Widget _buildFilesList(ThemeData theme, bool isDark) {
     return ListView.builder(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       itemCount: _filteredRecords.length,
       padding: const EdgeInsets.only(bottom: 88, left: 12, right: 12),
       itemBuilder: (context, index) {

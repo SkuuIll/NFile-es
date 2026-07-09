@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -485,7 +485,7 @@ class _NFileAddressBarState extends State<NFileAddressBar> {
                           controller: _breadcrumbsScrollController,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
+                          physics: const ClampingScrollPhysics(),
                           itemCount: breadcrumbs.length,
                           itemBuilder: (context, index) {
                             final segment = breadcrumbs[index];
