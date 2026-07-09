@@ -32,11 +32,12 @@ class SwipableStorageOverview extends StatelessWidget {
     );
   }
 
-  Widget _buildVolumeCard(BuildContext context, dynamic vol, bool expanded) {
+  Widget _buildVolumeCard(BuildContext context, StorageVolume vol, bool expanded) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final borderColor = isDark ? const Color(0xFF2A2A2A) : const Color(0xFFE5E5E5);
-    final freeFraction = vol.totalSpace > 0 ? vol.freeSpace / vol.totalSpace : 0.0;
+    final freeBytes = vol.totalBytes - vol.usedBytes;
+    final usedFraction = vol.totalBytes > 0 ? vol.usedBytes / vol.totalBytes : 0.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -72,7 +73,7 @@ class SwipableStorageOverview extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(4),
                         child: LinearProgressIndicator(
-                          value: 1.0 - freeFraction,
+                          value: usedFraction,
                           minHeight: 4,
                           backgroundColor: borderColor,
                           color: theme.colorScheme.onSurface.withOpacity(0.3),
@@ -83,11 +84,11 @@ class SwipableStorageOverview extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppStrings.current.freeSpace(FileUtils.formatBytes(vol.freeSpace, 1)),
+                            AppStrings.current.freeSpace(FileUtils.formatBytes(freeBytes, 1)),
                             style: TextStyle(fontSize: 11, color: theme.colorScheme.onSurface.withOpacity(0.5)),
                           ),
                           Text(
-                            AppStrings.current.totalSpace(FileUtils.formatBytes(vol.totalSpace, 1)),
+                            AppStrings.current.totalSpace(FileUtils.formatBytes(vol.totalBytes, 1)),
                             style: TextStyle(fontSize: 11, color: theme.colorScheme.onSurface.withOpacity(0.4)),
                           ),
                         ],
