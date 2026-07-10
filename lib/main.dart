@@ -35,6 +35,7 @@ void main() async {
   await RecycleBinService.init();
 
   AppStrings.locale = PreferencesService.getLocale();
+  await AppStrings.loadTranslations();
 
   // Load custom font dynamically if configured
   try {

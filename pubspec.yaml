@@ -137,6 +137,7 @@ flutter:
   assets:
     - assets/ic_launcher.webp
     - assets/logo/
+    - assets/i18n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
