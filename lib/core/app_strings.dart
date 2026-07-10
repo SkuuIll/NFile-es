@@ -1,21 +1,33 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../services/preferences_service.dart';
 
 class AppStrings {
   static AppStrings _instance = AppStrings._();
   static AppStrings get current => _instance;
-  static String _locale = 'es';
+  static String _localeSetting = 'system';
+
+  static String get _locale {
+    if (_localeSetting == 'system') {
+      try {
+        final platformLocale = WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+        return (platformLocale == 'es') ? 'es' : 'en';
+      } catch (_) {
+        return 'en'; // fallback if called before bindings are ready
+      }
+    }
+    return _localeSetting;
+  }
 
   static String get locale => _locale;
 
   static set locale(String value) {
-    _locale = value;
+    _localeSetting = value;
     _instance = AppStrings._();
   }
 
   static void setLocale(BuildContext context, String newLocale) {
-    _locale = newLocale;
     PreferencesService.saveLocale(newLocale);
+    _localeSetting = newLocale;
     _instance = AppStrings._();
     final router = context.findAncestorStateOfType<State>();
     if (router != null) {
@@ -642,6 +654,71 @@ class AppStrings {
   String get storageAnalyzer => _locale == 'es' ? 'Analizador de Almacenamiento' : 'Storage Analyzer';
   String freeSpace(String size) => _locale == 'es' ? 'Libre: $size' : 'Free: $size';
   String totalSpace(String size) => _locale == 'es' ? 'Total: $size' : 'Total: $size';
+
+  String get type => _locale == 'es' ? 'Tipo' : 'Type';
+  String get movedItemsSuccessfully => _locale == 'es' ? 'Elementos movidos correctamente' : 'Moved items successfully';
+  String get copiedItemsSuccessfully => _locale == 'es' ? 'Elementos copiados correctamente' : 'Copied items successfully';
+  String archiveCreatedSuccessfully(String name, String format) => _locale == 'es' ? '¡Archivo "$name.$format" creado correctamente!' : 'Archive "$name.$format" created successfully!';
+  String folderContains(int f, int d) => _locale == 'es' ? '$f subcarpeta(s), $d archivo(s)' : '$f subfolder(s), $d file(s)';
+  String itemsSelectedCount(int c, int f, int d) => _locale == 'es' ? '$c elementos ($f carpeta(s), $d archivo(s))' : '$c items ($f folder(s), $d file(s))';
+
+  String get language => _locale == 'es' ? 'Idioma' : 'Language';
+  String get languageSub => _locale == 'es' ? 'Seleccionar el idioma de la aplicación' : 'Select application language';
+  String get systemDefault => _locale == 'es' ? 'Predeterminado del sistema' : 'System default';
+  String get spanish => _locale == 'es' ? 'Español' : 'Spanish';
+  String get english => _locale == 'es' ? 'Inglés' : 'English';
+
+  String get threeDotDisabledInfoSub => _locale == 'es' ? 'Elige qué mostrar al lado de los archivos y carpetas cuando los 3 puntos están ocultos' : 'Choose what to show on the right side of files and folders when 3-dot is hidden';
+  String get appExitBehaviorSub => _locale == 'es' ? 'Elige entre pedir confirmación o presionar atrás dos veces para salir' : 'Choose between exit confirmation dialog or double-pressing back button to exit';
+  
+  String get noSettingsFound => _locale == 'es' ? 'No se encontraron ajustes' : 'No settings found';
+  String get trySearchingAnotherKeyword => _locale == 'es' ? 'Intenta buscar con otra palabra clave' : 'Try searching for another keyword';
+  String get settingsCategories => _locale == 'es' ? 'Categorías de Ajustes' : 'Settings Categories';
+  String get showConfirmationDialog => _locale == 'es' ? 'Mostrar diálogo de confirmación' : 'Show confirmation dialog';
+  
+  String get vibrantOrange => _locale == 'es' ? 'Naranja Vibrante' : 'Vibrant Orange';
+  String get royalPurple => _locale == 'es' ? 'Púrpura Real' : 'Royal Purple';
+  String get emeraldGreen => _locale == 'es' ? 'Verde Esmeralda' : 'Emerald Green';
+  String get crimsonRed => _locale == 'es' ? 'Rojo Carmesí' : 'Crimson Red';
+  String get amberGold => _locale == 'es' ? 'Dorado Ámbar' : 'Amber Gold';
+  String get cyberpunkPink => _locale == 'es' ? 'Rosa Cyberpunk' : 'Cyberpunk Pink';
+  String get sapphireBlue => _locale == 'es' ? 'Azul Zafiro' : 'Sapphire Blue';
+  String get forestGreen => _locale == 'es' ? 'Verde Bosque' : 'Forest Green';
+  String get sunsetPeach => _locale == 'es' ? 'Melocotón Atardecer' : 'Sunset Peach';
+
+  String get defaultLogo => _locale == 'es' ? 'Logo Predeterminado' : 'Default Logo';
+  String get outfitModernSans => 'Outfit Modern Sans';
+  String get jetBrainsTechMono => 'JetBrains Tech Mono';
+  String get montserratUrbanSans => 'Montserrat Urban Sans';
+  String get customImportedFont => _locale == 'es' ? 'Fuente Importada Personalizada' : 'Custom Imported Font';
+  
+  String get signatureDefaultFont => _locale == 'es' ? 'Original (Lexend Deca)' : 'Signature Default (Lexend Deca)';
+  String get signatureDefaultFontDesc => _locale == 'es' ? 'La estética geométrica original de NFile' : 'Original NFile clean geometric look';
+  String get outfitFontDesc => _locale == 'es' ? 'Estética geométrica premium, mínima y elegante' : 'Super sleek, minimal, and premium geometric aesthetic';
+  String get jetBrainsFontDesc => _locale == 'es' ? 'Estilo monoespaciado futurista para desarrolladores' : 'Clean and futuristic developer monospaced look';
+  String get montserratFontDesc => _locale == 'es' ? 'Escala tipográfica llamativa, audaz y moderna' : 'Bold, modern, and striking typographic scale';
+  String customFontTitle(String name) => _locale == 'es' ? 'Fuente Personalizada ($name)' : 'Custom Font ($name)';
+  String get customFontDesc => _locale == 'es' ? 'Tu archivo de fuente cargado a medida' : 'Your custom loaded font file';
+  String get replaceCustomFontFile => _locale == 'es' ? 'Reemplazar archivo de fuente' : 'Replace Custom Font File';
+  String get importCustomFontFile => _locale == 'es' ? 'Importar archivo de fuente (.ttf/.otf)' : 'Import Custom Font File (.ttf/.otf)';
+
+  String get noneHideInfo => _locale == 'es' ? 'Ninguna / Ocultar info' : 'None / Hide Info';
+  String get noneHideInfoDesc => _locale == 'es' ? 'No mostrar información adicional a la derecha' : 'Do not display additional information on the right side';
+  String get dateTimeTitle => _locale == 'es' ? 'Fecha y Hora' : 'Date & Time';
+  String get dateTimeDesc => _locale == 'es' ? 'Muestra la fecha y hora de la última modificación' : 'Display the last modified date and time';
+  String get fileSizeItemCount => _locale == 'es' ? 'Tamaño / Elementos' : 'File Size / Item Count';
+  String get fileSizeItemCountDesc => _locale == 'es' ? 'Muestra el tamaño para archivos y elementos para carpetas' : 'Display file size for files and item count for folders';
+
+  String get confirmDialogTitle => _locale == 'es' ? 'Diálogo de Confirmación' : 'Confirmation Dialog';
+  String get confirmDialogDesc => _locale == 'es' ? 'Preguntar verificación antes de salir' : 'Prompt for exit verification before closing';
+  String get doublePressToExit => _locale == 'es' ? 'Doble pulsación para Salir' : 'Double-Press to Exit';
+  String get doublePressToExitDesc => _locale == 'es' ? 'Toca atrás dos veces rápidamente para salir' : 'Tap the back button twice within a short window to exit';
+
+  String get neverManuallyClean => _locale == 'es' ? 'Nunca (Limpiar manual)' : 'Never (Manually clean bin)';
+  String get days7 => _locale == 'es' ? '7 Días' : '7 Days';
+  String get days15 => _locale == 'es' ? '15 Días' : '15 Days';
+  String get days30Recommended => _locale == 'es' ? '30 Días (Recomendado)' : '30 Days (Recommended)';
+  String get trashDeletionWarning => _locale == 'es' ? 'Los elementos se eliminarán permanentemente después de este tiempo.' : 'Items in the Recycle Bin will be permanently deleted after this duration.';
 }
 
 class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {
@@ -652,7 +729,6 @@ class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {
 
   @override
   Future<AppStrings> load(Locale locale) {
-    AppStrings._locale = locale.languageCode;
     AppStrings._instance = AppStrings._();
     return Future.value(AppStrings._instance);
   }

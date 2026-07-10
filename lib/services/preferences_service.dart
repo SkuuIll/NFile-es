@@ -637,7 +637,7 @@ class PreferencesService {
   static const String _keyLocale = 'locale';
 
   static String getLocale() {
-    return _prefs?.getString(_keyLocale) ?? 'es';
+    return _prefs?.getString(_keyLocale) ?? 'system';
   }
 
   static Future<void> saveLocale(String locale) async {

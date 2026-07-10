@@ -412,16 +412,16 @@ class PropertiesModalDialogState extends State<PropertiesModalDialog> {
                     if (_mimeType == 'Folder / Directory')
                       _CopyablePropertyRow(
                         label: AppStrings.current.contains,
-                        value: '${_folderCount - 1} subfolder(s), $_fileCount file(s)',
+                        value: AppStrings.current.folderContains(_folderCount - 1, _fileCount),
                       ),
                     if (_lastModified != null)
                       _CopyablePropertyRow(label: AppStrings.current.modified, value: FileUtils.formatDate(_lastModified!)),
-                    if (_mimeType.isNotEmpty) _CopyablePropertyRow(label: 'Type', value: _mimeType),
+                    if (_mimeType.isNotEmpty) _CopyablePropertyRow(label: AppStrings.current.type, value: _mimeType),
                     if (_permissions.isNotEmpty) _CopyablePropertyRow(label: AppStrings.current.permissions, value: _permissions),
                   ] else ...[
                     _CopyablePropertyRow(
                       label: AppStrings.current.itemsSelected,
-                      value: '$count items ($_folderCount folder(s), $_fileCount file(s))',
+                      value: AppStrings.current.itemsSelectedCount(count, _folderCount, _fileCount),
                     ),
                     _CopyablePropertyRow(
                       label: AppStrings.current.totalSize,

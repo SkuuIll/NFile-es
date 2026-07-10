@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/file_manager_provider.dart';
@@ -124,7 +124,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
     final mediaPreviewsVis = _shouldShow(AppStrings.current.showMediaPreviews, AppStrings.current.showMediaPreviewsSub);
     final adaptiveNamesVis = _shouldShow(AppStrings.current.adaptiveMultiLine, AppStrings.current.adaptiveMultiLineSub);
     final hideActionButtonsVis = _shouldShow(AppStrings.current.hide3DotButtons, AppStrings.current.hide3DotButtonsSub);
-    final trailingInfoVis = fileManager.hideActionMenuButtons && _shouldShow(AppStrings.current.threeDotDisabledInfo, 'Choose what to show on the right side of files and folders when 3-dot is hidden');
+    final trailingInfoVis = fileManager.hideActionMenuButtons && _shouldShow(AppStrings.current.threeDotDisabledInfo, AppStrings.current.threeDotDisabledInfoSub);
     final dragDropVis = _shouldShow(AppStrings.current.enableDragAndDrop, AppStrings.current.enableDragAndDropSub);
     final confirmDragVis = fileManager.enableDragDrop && _shouldShow(AppStrings.current.confirmDragDrop, AppStrings.current.confirmDragDropSub);
     final multipleTabsVis = _shouldShow(AppStrings.current.enableMultipleTabs, AppStrings.current.enableMultipleTabsSub);
@@ -132,7 +132,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
     final disableLeftBackVis = _shouldShow(AppStrings.current.preventLeftBackGesture, AppStrings.current.preventLeftBackGestureSub);
     final rememberLastFolderVis = _shouldShow(AppStrings.current.rememberLastFolder, AppStrings.current.rememberLastFolderSub);
     final hideNavLabelsVis = _shouldShow(AppStrings.current.hideNavLabels, AppStrings.current.hideNavLabelsSub);
-    final exitOptionVis = _shouldShow(AppStrings.current.appExitBehavior, 'Choose between exit confirmation dialog or double-pressing back button to exit');
+    final exitOptionVis = _shouldShow(AppStrings.current.appExitBehavior, AppStrings.current.appExitBehaviorSub);
 
     final generalStartupList = [
       defaultBrowseVis,
@@ -292,7 +292,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0, left: 4.0),
                   child: Text(
-                    'Settings Categories',
+                    AppStrings.current.settingsCategories,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: theme.colorScheme.onSurface.withOpacity(0.8),
@@ -384,7 +384,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'No settings found',
+                          AppStrings.current.noSettingsFound,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.onSurface,
@@ -392,7 +392,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          'Try searching for another keyword',
+                          AppStrings.current.trySearchingAnotherKeyword,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface.withOpacity(0.55),
                           ),
@@ -498,7 +498,7 @@ class _MoreSettingsScreenState extends State<MoreSettingsScreen> {
                         icon: Icons.logout_rounded,
                         title: AppStrings.current.appExitBehavior,
                         subtitle: fileManager.exitOption == 'confirm'
-                            ? 'Show confirmation dialog'
+                            ? AppStrings.current.showConfirmationDialog
                             : 'Double-press back button to exit',
                         onTap: () => _showExitOptionPickerDialog(context, fileManager, theme),
                       ),
@@ -1110,6 +1110,54 @@ class GeneralSettingsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             SettingsTile(
+              icon: Broken.global,
+              title: AppStrings.current.language,
+              subtitle: AppStrings.current.languageSub,
+              trailing: Text(
+                PreferencesService.getLocale() == 'system' ? AppStrings.current.systemDefault : 
+                PreferencesService.getLocale() == 'es' ? AppStrings.current.spanish : AppStrings.current.english,
+                style: TextStyle(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => SimpleDialog(
+                    title: Text(AppStrings.current.language),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    children: [
+                      RadioListTile<String>(
+                        title: Text(AppStrings.current.systemDefault),
+                        value: 'system',
+                        groupValue: PreferencesService.getLocale(),
+                        onChanged: (val) {
+                          AppStrings.setLocale(context, val!);
+                          Navigator.pop(ctx);
+                        },
+                      ),
+                      RadioListTile<String>(
+                        title: Text(AppStrings.current.spanish),
+                        value: 'es',
+                        groupValue: PreferencesService.getLocale(),
+                        onChanged: (val) {
+                          AppStrings.setLocale(context, val!);
+                          Navigator.pop(ctx);
+                        },
+                      ),
+                      RadioListTile<String>(
+                        title: Text(AppStrings.current.english),
+                        value: 'en',
+                        groupValue: PreferencesService.getLocale(),
+                        onChanged: (val) {
+                          AppStrings.setLocale(context, val!);
+                          Navigator.pop(ctx);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            SettingsTile(
               icon: Broken.folder_favorite,
               title: AppStrings.current.defaultToBrowseScreen,
               subtitle: AppStrings.current.defaultToBrowseScreenSub,
@@ -1245,7 +1293,7 @@ class GeneralSettingsScreen extends StatelessWidget {
               icon: Icons.logout_rounded,
               title: AppStrings.current.appExitBehavior,
               subtitle: fileManager.exitOption == 'confirm'
-                  ? 'Show confirmation dialog'
+                  ? AppStrings.current.showConfirmationDialog
                   : 'Double-press back button to exit',
               onTap: () => _showExitOptionPickerDialog(context, fileManager, theme),
             ),
@@ -1828,15 +1876,15 @@ class _TrashSettingsScreenState extends State<TrashSettingsScreen> {
 String _getAccentColorLabel(String option) {
   switch (option) {
     case 'dynamic': return 'Material You (Dynamic Wallpaper Colors)';
-    case 'orange': return 'Vibrant Orange';
-    case 'purple': return 'Royal Purple';
-    case 'green': return 'Emerald Green';
-    case 'red': return 'Crimson Red';
-    case 'gold': return 'Amber Gold';
-    case 'pink': return 'Cyberpunk Pink';
-    case 'sapphire': return 'Sapphire Blue';
-    case 'forest': return 'Forest Green';
-    case 'peach': return 'Sunset Peach';
+    case 'orange': return AppStrings.current.vibrantOrange;
+    case 'purple': return AppStrings.current.royalPurple;
+    case 'green': return AppStrings.current.emeraldGreen;
+    case 'red': return AppStrings.current.crimsonRed;
+    case 'gold': return AppStrings.current.amberGold;
+    case 'pink': return AppStrings.current.cyberpunkPink;
+    case 'sapphire': return AppStrings.current.sapphireBlue;
+    case 'forest': return AppStrings.current.forestGreen;
+    case 'peach': return AppStrings.current.sunsetPeach;
     case 'blue':
     default:
       return 'Original Default (Signature Blue)';
@@ -1873,20 +1921,20 @@ String _getAppIconLabel(String option) {
     case 'logo4': return AppStrings.current.logo4;
     case 'default':
     default:
-      return 'Default Logo';
+      return AppStrings.current.defaultLogo;
   }
 }
 
 String _getFontFamilyLabel(String option) {
   switch (option) {
     case 'nothing': return 'Dot-Matrix & Sans';
-    case 'outfit': return 'Outfit Modern Sans';
-    case 'jetbrains': return 'JetBrains Tech Mono';
-    case 'montserrat': return 'Montserrat Urban Sans';
-    case 'custom': return 'Custom Imported Font';
+    case 'outfit': return AppStrings.current.outfitModernSans;
+    case 'jetbrains': return AppStrings.current.jetBrainsTechMono;
+    case 'montserrat': return AppStrings.current.montserratUrbanSans;
+    case 'custom': return AppStrings.current.customImportedFont;
     case 'default':
     default:
-      return 'Signature Default (Lexend Deca)';
+      return AppStrings.current.signatureDefaultFont;
   }
 }
 
@@ -1898,11 +1946,11 @@ String _getAutoDeleteDaysLabel(int days) {
 
 String _getTrailingInfoTypeLabel(String option) {
   switch (option) {
-    case 'dateTime': return 'Date & Time';
-    case 'sizeAndCount': return 'File Size / Item Count';
+    case 'dateTime': return AppStrings.current.dateTimeTitle;
+    case 'sizeAndCount': return AppStrings.current.fileSizeItemCount;
     case 'none':
     default:
-      return 'None / Hide Info';
+      return AppStrings.current.noneHideInfo;
   }
 }
 
@@ -1915,9 +1963,9 @@ void _showTrailingInfoTypePickerDialog(BuildContext context, FileManagerProvider
     builder: (ctx) {
       final current = fileManager.trailingInfoType;
       final options = [
-        {'key': 'none', 'name': 'None / Hide Info', 'desc': 'Do not display additional information on the right side'},
-        {'key': 'dateTime', 'name': 'Date & Time', 'desc': 'Display the last modified date and time'},
-        {'key': 'sizeAndCount', 'name': 'File Size / Item Count', 'desc': 'Display file size for files and item count for folders'},
+        {'key': 'none', 'name': AppStrings.current.noneHideInfo, 'desc': AppStrings.current.noneHideInfoDesc},
+        {'key': 'dateTime', 'name': AppStrings.current.dateTimeTitle, 'desc': AppStrings.current.dateTimeDesc},
+        {'key': 'sizeAndCount', 'name': AppStrings.current.fileSizeItemCount, 'desc': AppStrings.current.fileSizeItemCountDesc},
       ];
 
       return SafeArea(
@@ -2012,8 +2060,8 @@ void _showExitOptionPickerDialog(BuildContext context, FileManagerProvider fileM
     builder: (ctx) {
       final current = fileManager.exitOption;
       final options = [
-        {'key': 'confirm', 'name': 'Confirmation Dialog', 'desc': 'Prompt for exit verification before closing'},
-        {'key': 'double_press', 'name': 'Double-Press to Exit', 'desc': 'Tap the back button twice within a short window to exit'},
+        {'key': 'confirm', 'name': AppStrings.current.confirmDialogTitle, 'desc': AppStrings.current.confirmDialogDesc},
+        {'key': 'double_press', 'name': AppStrings.current.doublePressToExit, 'desc': AppStrings.current.doublePressToExitDesc},
       ];
 
       return SafeArea(
@@ -2083,15 +2131,15 @@ void _showThemePickerDialog(BuildContext context, FileManagerProvider fileManage
       final options = [
         {'key': 'blue', 'name': 'Original Default (Signature Blue)', 'color': const Color(0xFF369FE7)},
         {'key': 'dynamic', 'name': 'Material You (Dynamic Wallpaper Colors)', 'color': Colors.teal},
-        {'key': 'orange', 'name': 'Vibrant Orange', 'color': const Color(0xFFFF6D00)},
-        {'key': 'purple', 'name': 'Royal Purple', 'color': const Color(0xFF8E24AA)},
-        {'key': 'green', 'name': 'Emerald Green', 'color': const Color(0xFF00C853)},
-        {'key': 'red', 'name': 'Crimson Red', 'color': const Color(0xFFD50000)},
-        {'key': 'gold', 'name': 'Amber Gold', 'color': const Color(0xFFFFD600)},
-        {'key': 'pink', 'name': 'Cyberpunk Pink', 'color': const Color(0xFFFF2E93)},
-        {'key': 'sapphire', 'name': 'Sapphire Blue', 'color': const Color(0xFF0F52BA)},
-        {'key': 'forest', 'name': 'Forest Green', 'color': const Color(0xFF228B22)},
-        {'key': 'peach', 'name': 'Sunset Peach', 'color': const Color(0xFFFF7F50)},
+        {'key': 'orange', 'name': AppStrings.current.vibrantOrange, 'color': const Color(0xFFFF6D00)},
+        {'key': 'purple', 'name': AppStrings.current.royalPurple, 'color': const Color(0xFF8E24AA)},
+        {'key': 'green', 'name': AppStrings.current.emeraldGreen, 'color': const Color(0xFF00C853)},
+        {'key': 'red', 'name': AppStrings.current.crimsonRed, 'color': const Color(0xFFD50000)},
+        {'key': 'gold', 'name': AppStrings.current.amberGold, 'color': const Color(0xFFFFD600)},
+        {'key': 'pink', 'name': AppStrings.current.cyberpunkPink, 'color': const Color(0xFFFF2E93)},
+        {'key': 'sapphire', 'name': AppStrings.current.sapphireBlue, 'color': const Color(0xFF0F52BA)},
+        {'key': 'forest', 'name': AppStrings.current.forestGreen, 'color': const Color(0xFF228B22)},
+        {'key': 'peach', 'name': AppStrings.current.sunsetPeach, 'color': const Color(0xFFFF7F50)},
       ];
 
       return SafeArea(
@@ -2494,13 +2542,13 @@ void _showFontFamilyPickerDialog(BuildContext context, FileManagerProvider fileM
       final current = fileManager.fontFamilyOption;
       final hasCustomFont = fileManager.customFontPath != null;
       final options = [
-        {'key': 'default', 'name': 'Signature Default (Lexend Deca)', 'desc': 'Original NFile clean geometric look'},
+        {'key': 'default', 'name': AppStrings.current.signatureDefaultFont, 'desc': AppStrings.current.signatureDefaultFontDesc},
         {'key': 'nothing', 'name': 'Nothing Dot-Matrix & Sans', 'desc': 'High-tech retro dot matrix headings + clean body'},
-        {'key': 'outfit', 'name': 'Outfit Modern Sans', 'desc': 'Super sleek, minimal, and premium geometric aesthetic'},
-        {'key': 'jetbrains', 'name': 'JetBrains Tech Mono', 'desc': 'Clean and futuristic developer monospaced look'},
-        {'key': 'montserrat', 'name': 'Montserrat Urban Sans', 'desc': 'Bold, modern, and striking typographic scale'},
+        {'key': 'outfit', 'name': AppStrings.current.outfitModernSans, 'desc': AppStrings.current.outfitFontDesc},
+        {'key': 'jetbrains', 'name': AppStrings.current.jetBrainsTechMono, 'desc': AppStrings.current.jetBrainsFontDesc},
+        {'key': 'montserrat', 'name': AppStrings.current.montserratUrbanSans, 'desc': AppStrings.current.montserratFontDesc},
         if (hasCustomFont)
-          {'key': 'custom', 'name': 'Custom Font (${p.basename(fileManager.customFontPath!)})', 'desc': 'Your custom loaded font file'},
+          {'key': 'custom', 'name': AppStrings.current.customFontTitle(p.basename(fileManager.customFontPath!)), 'desc': AppStrings.current.customFontDesc},
       ];
 
       return SafeArea(
@@ -2566,7 +2614,7 @@ void _showFontFamilyPickerDialog(BuildContext context, FileManagerProvider fileM
                   OutlinedButton.icon(
                     icon: const Icon(Broken.document_upload, size: 20),
                     label: Text(
-                      hasCustomFont ? 'Replace Custom Font File' : 'Import Custom Font File (.ttf/.otf)',
+                      hasCustomFont ? AppStrings.current.replaceCustomFontFile : AppStrings.current.importCustomFontFile,
                       style: const TextStyle(fontWeight: FontWeight.bold, fontFamily: 'LexendDeca'),
                     ),
                     style: OutlinedButton.styleFrom(
@@ -2657,10 +2705,10 @@ void _showAutoDeleteDaysPickerDialog(BuildContext context, ThemeData theme, Void
     builder: (ctx) {
       final current = RecycleBinService.getAutoDeleteDays();
       final options = [
-        {'days': 7, 'label': '7 Days'},
-        {'days': 15, 'label': '15 Days'},
-        {'days': 30, 'label': '30 Days (Recommended)'},
-        {'days': 0, 'label': 'Never (Manually clean bin)'},
+        {'days': 7, 'label': AppStrings.current.days7},
+        {'days': 15, 'label': AppStrings.current.days15},
+        {'days': 30, 'label': AppStrings.current.days30Recommended},
+        {'days': 0, 'label': AppStrings.current.neverManuallyClean},
       ];
 
       return SafeArea(
@@ -2692,7 +2740,7 @@ void _showAutoDeleteDaysPickerDialog(BuildContext context, ThemeData theme, Void
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  'Items in the Recycle Bin will be permanently deleted after this duration.',
+                  AppStrings.current.trashDeletionWarning,
                   style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withOpacity(0.5)),
                 ),
               ),

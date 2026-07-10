@@ -629,7 +629,7 @@ class _DragDropActionDialogState extends State<DragDropActionDialog> {
           if (stableContext.mounted) {
             ScaffoldMessenger.of(stableContext).showSnackBar(
               SnackBar(
-                content: Text('Archive "${res.archiveName}.${res.format}" created successfully!'),
+                content: Text(AppStrings.current.archiveCreatedSuccessfully(res.archiveName, res.format)),
                 behavior: SnackBarBehavior.floating,
               ),
             );

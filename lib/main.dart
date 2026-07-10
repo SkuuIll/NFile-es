@@ -322,7 +322,7 @@ class _NFileAppState extends State<NFileApp> {
               navigatorKey: navigatorKey,
               title: AppStrings.current.appTitle,
               debugShowCheckedModeBanner: false,
-              locale: Locale(PreferencesService.getLocale()),
+              locale: PreferencesService.getLocale() == 'system' ? null : Locale(PreferencesService.getLocale()),
               supportedLocales: AppStrings.supportedLocales,
               localizationsDelegates: const [
                 AppStrings.delegate,

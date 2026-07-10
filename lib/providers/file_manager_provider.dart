@@ -1913,7 +1913,7 @@ class FileManagerProvider extends ChangeNotifier {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(_isCut ? 'Moved items successfully' : 'Copied items successfully'),
+              content: Text(_isCut ? AppStrings.current.movedItemsSuccessfully : AppStrings.current.copiedItemsSuccessfully),
               behavior: SnackBarBehavior.floating,
             ),
           );
@@ -2391,7 +2391,7 @@ class FileManagerProvider extends ChangeNotifier {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(_isCut ? 'Moved items successfully' : 'Copied items successfully'),
+            content: Text(_isCut ? AppStrings.current.movedItemsSuccessfully : AppStrings.current.copiedItemsSuccessfully),
             behavior: SnackBarBehavior.floating,
           ),
         );
